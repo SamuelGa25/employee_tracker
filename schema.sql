@@ -1,41 +1,62 @@
 
-CREATE TABLE employee (
-	id int,
-	employee_name varchar(255),
-    employee_role varchar(255), 
-    PRIMARY KEY (id)
+-- if it already exist then it will drop.
+DROP DATABASE IF EXISTS company;
+DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS departments;
 
-);
-
-ALTER TABLE employee MODIFY COLUMN id int auto_increment; 
 SHOW CREATE TABLE employee;
 
-CREATE TABLE `employee` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `employee_name` varchar(255) DEFAULT NULL,
-  `employee_role` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE DATABASE company;
+
+USE company;
+
+
+-- table for department
+CREATE TABLE departments(
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) DEFAULT NULL,
+  PRIMARY KEY (id) 
+
 );
 
-INSERT INTO employee (employee_name, employee_role) VALUES('Samuel', 'Engineer');
-INSERT INTO employee (employee_name, employee_role) VALUES('John', 'Engineer');
-INSERT INTO employee (employee_name, employee_role) VALUES('Johana', 'Manager');
+-- table for roles
+CREATE TABLE roles(
+  id INT NOT NULL AUTO_INCREMENT,
+  title VARCHAR(255) DEFAULT NULL,
+  department INT,
+  salary INT NOT NULL,
+  CONSTRAINT fk_department FOREIGN KEY (department) REFERENCES departments(id) ON DELETE SET NULL,
+  PRIMARY KEY (id) 
+
+);
+
+-- employee table 
+CREATE TABLE employees (
+    id INT NOT NULL AUTO_INCREMENT,
+    first_name varchar(255) NOT NULL,
+    last_name varchar(255) NOT NULL,
+    role_id INT NOT NULL,
+    manager_id INT,
+    -- CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles(id),
+	  -- CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employees(id) ON DELETE SET NULL,
+    PRIMARY KEY (id)
+);
 
 
-SELECT * FROM employee;  
-SELECT * FROM employee WHERE id = 1;
-SELECT * FROM employee WHERE employee_role = 'Engineer';
 
-UPDATE employee SET employee_role = 'Manager' where id = 3;
+ 
 
-SELECT * FROM employee;
-DELETE from employee where employee_role = 'Engineer';
-DELETE from employee where id = 3;
-DELETE from employee where id = 5;
-DELETE from employee where id = 6;
 
-SELECT * FROM employee;
-UPDATE employees set employee_role = 'Manager' where employee_name = 'Johana';
+
+
+
+
+
+
+
+
+
 
 
 
