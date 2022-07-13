@@ -9,8 +9,10 @@ VALUES
 INSERT INTO roles (title, salary, department_id)
 VALUES
 
-("Front-End Engineer", 170,000, 2);
-("Full Stack Engineer", 200,000,2 );
+("Front-End Engineer", 170000 , 2),
+("Full-Stack Engineer", 200000, 2 );
+
+
 
 
 INSERT INTO employees (id, first_name, last_name, role_id)
