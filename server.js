@@ -3,9 +3,6 @@ const table = require('console.table');
 const inquirer = require("inquirer");
 const db =  require('./db/connection');
 
-const express = require('express');
-const router = express.Router();
-
 var prompt = inquirer.createPromptModule();
 
 
